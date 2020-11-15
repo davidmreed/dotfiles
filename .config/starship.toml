@@ -1,0 +1,15 @@
+format = """\
+$username\
+$hostname\
+$directory\
+$git_state$git_branch $git_status$python\
+[\\$ ](bold green)"""
+
+add_newline = false
+
+[git_branch]
+
+format = "[$branch]($style)"
+
+[python]
+format = '[(\($virtualenv\) )]($style)'
