@@ -1,0 +1,8 @@
+[user]
+    name = David Reed
+    email = david@ktema.org
+[core]
+    editor = vim
+    whitespace = blank-at-eol,space-before-tab,blank-at-eof
+[push]
+    default = simple
