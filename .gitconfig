@@ -6,3 +6,5 @@
     whitespace = blank-at-eol,space-before-tab,blank-at-eof
 [push]
     default = simple
+[pull]
+	rebase = false
