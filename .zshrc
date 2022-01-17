@@ -14,3 +14,4 @@ bindkey "$key[Up]" up-line-or-beginning-search
 bindkey "$key[Down]" down-line-or-beginning-search
 
 eval "$(direnv hook zsh)"
+export PATH="$PATH:/home/dmr/.local/bin:/home/dmr/.npm-global/bin"
