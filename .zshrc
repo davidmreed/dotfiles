@@ -15,3 +15,9 @@ bindkey "$key[Down]" down-line-or-beginning-search
 
 eval "$(direnv hook zsh)"
 export PATH="$PATH:/home/dmr/.local/bin:/home/dmr/.npm-global/bin"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+alias nvimc='nvim ~/.config/nvim/init.vim'

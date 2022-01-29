@@ -10,11 +10,11 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 
 " Snippet completion source for nvim-cmp
-Plug 'hrsh7th/cmp-vsnip'
+" Plug 'hrsh7th/cmp-vsnip'
 
-" Other usefull completion sources
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-buffer'
+" Other useful completion sources
+" Plug 'hrsh7th/cmp-path'
+" Plug 'hrsh7th/cmp-buffer'
 
 " See hrsh7th's other plugins for more completion sources!
 
@@ -23,16 +23,24 @@ Plug 'morhetz/gruvbox'
 Plug 'simrat39/rust-tools.nvim'
 
 " Snippet engine
-Plug 'hrsh7th/vim-vsnip'
+" Plug 'hrsh7th/vim-vsnip'
 
 " Fuzzy finder
-" Optional
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
-" Color scheme used in the GIFs!
-" Plug 'arcticicestudio/nord-vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'SidOfc/carbon.nvim'
+
+" Svelte/JS support
+Plug 'evanleck/vim-svelte'
+Plug 'pangloss/vim-javascript'
+
+" Formatting
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 
 call plug#end()
 
@@ -106,7 +114,7 @@ cmp.setup({
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
+    ['<C-i>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     })
@@ -115,9 +123,9 @@ cmp.setup({
   -- Installed sources
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'vsnip' },
-    { name = 'path' },
-    { name = 'buffer' },
+    --{ name = 'vsnip' },
+    --{ name = 'path' },
+    --{ name = 'buffer' },
   },
 })
 EOF
@@ -129,6 +137,7 @@ set expandtab
 set shiftwidth=4
 set autoindent
 set number
+set updatetime=100
 filetype plugin indent on
 syntax on
 set clipboard=unnamedplus
@@ -142,11 +151,21 @@ set splitbelow
 set splitright
 set encoding=UTF-8
 set fileencoding=UTF-8
+
+" airline
+let g:airline_theme='ubaryd'
+let g:gitgutter_highlight_linenrs = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_section_z = airline#section#create_right(['%l', '%c'])
+
+" prettier
+let g:prettier#quickfix_enabled = 0
+let g:prettier#autoformat_require_pragma = 0
+au BufWritePre *.css,*.svelte,*.pcss,*.html,*.ts,*.js,*.json PrettierAsync
+
 autocmd vimenter * ++nested colorscheme gruvbox
 autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
-" Set updatetime for CursorHold
-" 300ms of no cursor movement to trigger CursorHold
-set updatetime=300
 " Show diagnostic popup on cursor hold
 autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
@@ -168,3 +187,4 @@ nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent>ff <cmd>Telescope find_files<cr>
 nnoremap <silent>fb <cmd>Telescope buffers<cr>
 nnoremap <silent>fg <cmd>Telescope live_grep<cr>
+inoremap <S-Tab> <C-d>
