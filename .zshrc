@@ -15,8 +15,12 @@ zle -N down-line-or-beginning-search
 bindkey "$key[Up]" up-line-or-beginning-search
 bindkey "$key[Down]" down-line-or-beginning-search
 
-# Created by `pipx` on 2021-07-27 03:15:35
 export PATH="$PATH:/home/david/.local/bin:/opt/rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin"
 export RUSTUP_HOME=/opt/rustup
 export CARGO_HOME=/opt/cargo
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+alias nvimc='nvim ~/.config/nvim/init.vim'
