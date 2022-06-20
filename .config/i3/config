@@ -182,6 +182,7 @@ bindsym $mod+r mode "resize"
 for_window [class=".*"] border pixel 0
 for_window [class="Conky"] floating enable
 no_focus [class="Conky"]
-gaps outer 4
+gaps outer 0
 gaps inner 32
-
+focus_follows_mouse yes
+mouse_warping none
